@@ -22,23 +22,15 @@ def main():
     mainScreen.blit(schedule, (0, 500))
 
 
-    pygame.display.update()
-    pygame.display.update(mainScreen.blit(schedule.Update(), (0, 300)))
+    pygame.display.update(mainScreen.blit(header, (0, 0)))
+    pygame.display.update(mainScreen.blit(schedule.Update(), (0, 500)))
     run = True
     while(run):
         clock.tick(26)
-<<<<<<< HEAD
        	
-        pygame.display.update(mainScreen.blit(clockScreen.Update(), (0,0)))
+        pygame.display.update(mainScreen.blit(clockScreen.Update(), (0,200)))
        	pygame.display.update(mainScreen.blit(eventScreen.Update(), (0,1820)))
-        
-=======
-        mainScreen.blit(header, (0, 0))
-        mainScreen.blit(clockScreen.Update(), (0, 200))
-        mainScreen.blit(eventScreen.Update(), (0, 1820))
-        mainScreen.blit(schedule.Update(), (0, 500))
-        pygame.display.update()
->>>>>>> daae8a4e114acd210104ec97988fe0cc4a030ba0
+
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == ord('q'):
