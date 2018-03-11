@@ -20,13 +20,14 @@ def main():
 
 
     pygame.display.update()
+    pygame.display.update(mainScreen.blit(schedule.Update(), (0, 300)))
     run = True
     while(run):
         clock.tick(26)
-        mainScreen.blit(clockScreen.Update(), (0,0))
-        mainScreen.blit(eventScreen.Update(), (0,1820))
-        mainScreen.blit(schedule.Update(), (0, 300))
-        pygame.display.update()
+       	
+        pygame.display.update(mainScreen.blit(clockScreen.Update(), (0,0)))
+       	pygame.display.update(mainScreen.blit(eventScreen.Update(), (0,1820)))
+        
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == ord('q'):
