@@ -30,7 +30,7 @@ class ScheduleDisplay(Surface):
         self.building = 'MC'
         self.term = ''
         # The relative location of the files containing the raw class data.
-        self.scheduleFile = 'testJSON.json'
+        self.scheduleFile = 'scheduleData.json'
         # This file is a compilation of Subjects in the 'MC' building. The greatly shortens
         # the amount of time required to update the json file.
         self.compiledSubjectsFile = 'subjectsIn_MC.txt'
@@ -134,7 +134,7 @@ class ScheduleDisplay(Surface):
         daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'Sat', 'S']
         data = LoadJsonToList(path.join(self.dir_path, self.scheduleFile))
         for meeting in data[1:]:
-                if DoesClassMeet('M', meeting, 'LEC'): # <<<< """''Artificially''""" made to "T" for testing, replace with daysOfWeek[today]
+                if DoesClassMeet(daysOfWeek[today], meeting, 'LEC'): # <<<< """''Artificially''""" made to "T" for testing, replace with daysOfWeek[today]
                     meetingStart = ConvertMilitaryToStd(meeting['LEC']['Start'])
                     timeSlot = datetime.combine(currentTime.date(), datetime.strptime(meetingStart, '%I:%M %p').time())
                     timeSlot = timeSlot + timedelta(minutes=self.timeSlotDisplayBuffer)
