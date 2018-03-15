@@ -23,7 +23,7 @@ class AcademicCalanderDisplay(Surface):
         self.titleBar_bgColor = (39,40,34)
         self.titleBar_textColor = (186, 111, 23)
         self.titleBar_font = ('OpenSans-Bold.ttf', int(height * .3067))
-        self.titleBar_text = 'Butte College Academic Deadlines'
+        self.titleBar_text = 'Important Academic Deadlines'
         self.RenderTitleBar()
         self.scrollBarSpeed = 5  
         self.scrollBar_heightRatio = 1.0 - self.titleBar_heightRatio

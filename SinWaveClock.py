@@ -8,10 +8,13 @@ class SinWaveClock(pygame.Surface):
   def __init__(self, width, height):
     pygame.Surface.__init__(self,(width, height))
     pygame.font.init()
+    self.dir_path = path.dirname(path.realpath(__file__))
+    self.assest_path = path.join(self.dir_path, 'Assets')
+    self.fonts_path = path.join(self.assest_path, 'Fonts')
     # All values that can edit the sin wave clock
     self.sin_Length = self.get_width()
     # If zero it will just be a line
-    self.sin_DotProximity = 10
+    self.sin_DotProximity = int(width * .02882882)
     # .5 is 1 second period
     self.sin_Period = .25
     self.sin_Frequency = 4
@@ -23,14 +26,13 @@ class SinWaveClock(pygame.Surface):
     # Clolor for dots in the past
     self.sin_LnColorSecondary = (39,40,34)
     # Size of dots
-    self.sin_LnRadius = int(height * .01633333)
+    self.sin_LnRadius = int(height * (30/740))
     self.sin_SecondsDotRadius = int(height * .026667)
     self.sin_SecondsYDisplacment = int(height * -.06667)
     self.sin_SecondsXDisplacment = int(width * -.055)
-    self.bgColor = (0,0,0)
+    self.bgColor = (15,15,15)
     self.bgSurface = pygame.Surface((width, height))
     # FONTS
-    self.fonts_path = path.join(path.dirname(path.realpath(__file__)), 'Fonts')
     self.secondsFont = pygame.font.Font(path.join(self.fonts_path, '1979_dot_matrix.ttf'), int(height * .08))
     self.dateFont = pygame.font.Font(path.join(self.fonts_path, 'OpenSans-Regular.ttf'), int(height * .25))
     self.timeFont = pygame.font.Font(path.join(self.fonts_path, 'OpenSans-Regular.ttf'), int(height * .25))

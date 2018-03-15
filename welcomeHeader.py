@@ -48,7 +48,7 @@ class WelcomeHeader(Surface):
 
     def Render(self):
         bcLogoSurface = image.load(path.join(self.assets_path, self.bcLogoFile))
-        bcLogoSurface = self.aspect_scale(bcLogoSurface, int(.5 * self.width), self.height)
+        bcLogoSurface = self.aspect_scale(bcLogoSurface, int(.4 * self.width), self.height)
         welcomeFont = font.Font(*self.welcomeTextFont)
         welcomeTextTopSurface = welcomeFont.render(self.welcomeTextTop, True, (0,0,0))
         welcomeTextTopSurfaceRect = (int(self.width * .015873) + bcLogoSurface.get_rect().width + ((self.width - bcLogoSurface.get_rect().width) / 2) - (welcomeTextTopSurface.get_rect().width / 2), int(self.height * .1))
