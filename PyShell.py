@@ -10,7 +10,7 @@ os.environ['SDL_VIDEO_WINDOW_POS'] = "0,0"
 def main():
     pygame.init()
     clock = pygame.time.Clock()
-    mainScreen = pygame.display.set_mode((1080, 1920), pygame.FULLSCREEN | pygame.HWSURFACE | pygame.NOFRAME)
+    mainScreen = pygame.display.set_mode((1000, 500), pygame.FULLSCREEN | pygame.HWSURFACE | pygame.NOFRAME)
     mainScreen.fill((0, 0, 255))
     header = welcomeHeader.WelcomeHeader(1080, 200)
     mainScreen.blit(header, (0, 0))
@@ -20,8 +20,6 @@ def main():
     mainScreen.blit(eventScreen, (0, 1820))
     schedule = ScheduleDisplay(1080, 1320)
     mainScreen.blit(schedule, (0, 500))
-
-
     pygame.display.update(mainScreen.blit(header, (0, 0)))
     pygame.display.update(mainScreen.blit(schedule.Update(), (0, 500)))
     run = True

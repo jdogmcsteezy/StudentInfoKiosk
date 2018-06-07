@@ -7,6 +7,10 @@ from time import localtime, strptime
 import sys
 import json
 import re
+import logging
+
+logging.basicConfig()
+logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 class ScheduleDisplay(Surface):
     def __init__(self, width, height):
@@ -76,10 +80,9 @@ class ScheduleDisplay(Surface):
         self.LoadTodaysClasses()
         self.LoadTodaysTimeSlots()
         
-        
-
 
     def Update(self):
+        needsUpdate = False
         maxHeight = self.height
         currentTime = datetime.now()
         if self.classesSurfacesAndTimes:
@@ -88,6 +91,7 @@ class ScheduleDisplay(Surface):
                 self.classesSurfacesAndTimes.pop(0)
                 if not self.classesSurfacesAndTimes:
                     return self
+                needsUpdate = True
                 self.fill((252,252,252))
                 self.blit(self.backgroundImage, (0,0))
                 for classesSurfaceAndTime in self.classesSurfacesAndTimes[:-1]:
@@ -107,6 +111,7 @@ class ScheduleDisplay(Surface):
         else:
             if self.todaysClasses:
                 self.noMoreClassesFlag = False
+                needsUpdate = True
                 self.fill((252,252,252))
                 self.blit(self.backgroundImage, (0,0))
                 for i in range(len(self.todaysTimeSlots)):
@@ -119,11 +124,12 @@ class ScheduleDisplay(Surface):
             else:
                 if not self.noMoreClassesFlag:
                     self.noMoreClassesFlag = True
+                    needsUpdate = True
                     noClassesSurface = self.CreateClassesSurface([])
                     self.fill((252,252,252))
                     self.blit(self.backgroundImage, (0,0))
                     self.blit(noClassesSurface,(0,0))
-        return self
+        return needsUpdate
     # Should be called as the clock striked midnight.
     def LoadTodaysClasses(self):
         print('LoadTodaysClasses')
@@ -229,6 +235,7 @@ class ScheduleDisplay(Surface):
         schedulePath = path.join(self.dir_path, self.scheduleFile)
         if currentTermDict['Term']:
             self.term = currentTermDict['Term']
+            self.scheduler.modify_job('CompileSubjects01', args=[self.building, self.term, self.location, path.join(self.dir_path, self.compiledSubjectsFile)])
             subjectsPath = path.join(self.dir_path, self.compiledSubjectsFile)
             try:
                 newClassesList = CreateClassesList(self.building, self.term, self.location, subjectsPath)
@@ -256,15 +263,19 @@ class ScheduleDisplay(Surface):
             termDict = LoadJsonToList(schedulePath)[0]
             if termDict['Term']:
                 self.term = termDict['Term']
+                self.scheduler.modify_job('CompileSubjects01', args=[self.building, self.term, self.location, path.join(self.dir_path, self.compiledSubjectsFile)])
                 currentDate = datetime.now()
                 startDate = datetime.strptime(termDict['Start'], '%m/%d/%Y')
                 endDate = datetime.strptime(termDict['End'], '%m/%d/%Y')
                 if not (startDate <= currentDate and currentDate <= endDate):
                     self.UpdateJson()
                     print(1)
+                if len(LoadJsonToList(schedulePath)) <= 1:
+                    self.UpdateJson()
+                    print(2)
             else:
                 self.UpdateJson()
-                print(2)
+                print(3)
         else:
             self.UpdateJson()
-            print(3)
+            print(4)

@@ -51,6 +51,7 @@ class AcademicCalanderDisplay(Surface):
         self.scrollBar_Rect = self.scrollBar.get_rect()
         self.scrollBar.blit(self.scrollBar_content, (0, self.scrollBar_Rect.centery - self.scrollBar_contentRect.centery))
         self.blit(self.scrollBar, (0, self.height * self.titleBar_heightRatio))
+        self.scrollX1 = 0
         self.scrollX2 = self.scrollBar_contentRect.right
         self.scrollBar_content.convert()
 
