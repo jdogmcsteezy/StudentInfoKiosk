@@ -35,11 +35,9 @@ def Web_Driver():
 # If None is input into the Subject paramater web browser will attempt to get all info from all
 # departments which may timeout.
 def GrabClassData(Term, Location, Subject):
-    print('------------',Term)
     with Web_Driver() as Driver:
         Driver.get('http://searchclasses.butte.edu/')
         selection = Select(Driver.find_element_by_id('InputTermId'))
-        print(Term)
         selection.select_by_visible_text(Term)
         selection = Select(Driver.find_element_by_id('InputLocationId'))
         selection.select_by_visible_text(Location)
@@ -185,7 +183,10 @@ def ParseSemesterDates(data):
 def ParseHTMLtoJSON(data, classes, building):
     soup = BeautifulSoup(data, 'lxml')
     # Grab every table row inside a <bodyt> 
-    rows = soup.find('tbody').findAll('tr')
+    try:
+        rows = soup.find('tbody').findAll('tr')
+    except AttributeError:
+        return
     for row in rows:
         classInfo = {}
         LocationTime = []
