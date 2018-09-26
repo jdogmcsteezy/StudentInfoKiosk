@@ -1,3 +1,5 @@
+# Author: Jesse Schmidt 2017
+
 import os
 from datetime import datetime
 from selenium import webdriver

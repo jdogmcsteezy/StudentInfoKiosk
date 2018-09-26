@@ -1,4 +1,5 @@
-
+# Author: Jesse Schmidt 2018
+#
 # -*- coding: utf-8 -*-
 from urllib.request import urlopen, URLError
 from pygame import Surface, time, font, image, transform, SRCALPHA

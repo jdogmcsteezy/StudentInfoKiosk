@@ -1,3 +1,5 @@
+# Author: Jesse Schmidt 2017
+
 from WeatherWidget import WeatherWidget
 import pygame
 from pygame import Surface, font, image, transform, SRCALPHA, draw

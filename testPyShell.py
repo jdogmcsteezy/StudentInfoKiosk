@@ -1,3 +1,5 @@
+# Author: Jesse Schmidt 2018
+
 import pygame
 import SinWaveClock
 import rssEventDisplay

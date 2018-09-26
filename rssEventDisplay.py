@@ -1,3 +1,5 @@
+# Author: Jesse Schmidt 2017
+
 from pygame import Surface, time, font, draw
 import urllib.request
 import xml.etree.ElementTree as ET

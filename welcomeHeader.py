@@ -1,3 +1,5 @@
+# Author: Jesse Schmidt 2017
+
 from pygame import image, Surface, font, transform, SRCALPHA
 from os import path
 
@@ -19,6 +21,7 @@ class WelcomeHeader(Surface):
         self.welcomeTextBottom = 'the Media Center'
         self.Render()
 
+    # source: http://www.pygame.org/pcr/transform_scale/
     def aspect_scale(self, img, bx, by):
         # """ Scales 'img' to fit into box bx/by.
         # This method will retain the original image's aspect ratio """

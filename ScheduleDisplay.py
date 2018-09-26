@@ -1,3 +1,5 @@
+#Author: Jesse Schmidt 2017 
+
 from pygame import Surface, time, font, image, transform, SRCALPHA
 from BCScheduleCreator import ConvertMilitaryToStd, DoesClassMeet, PrintClass, CreateClassesList, LoadJsonToList, DumpListToJson, CompileSubjectsInBuilding, GetCurrentTerm
 from apscheduler.schedulers.background import BackgroundScheduler
